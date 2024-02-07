@@ -1,13 +1,14 @@
-import { Button, Heading, MultiStep, Text, TextInput } from '@ignite-ui/react'
-import { Container, Header, Form, FormError } from './styles'
-import { ArrowRight } from 'phosphor-react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { useForm } from 'react-hook-form'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import { api } from '../../lib/axios'
+import { Button, Heading, MultiStep, Text, TextInput } from '@ignite-ui/react'
 import { AxiosError } from 'axios'
+import { useRouter } from 'next/router'
+import { ArrowRight } from 'phosphor-react'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { api } from '../../lib/axios'
+
+import { Container, Form, FormError, Header } from './styles'
 
 const registerFormSchema = z.object({
   username: z
@@ -89,18 +90,14 @@ export default function Register() {
 
         <label>
           <Text size="sm">Nome completo</Text>
-          <TextInput
-            placeholder="Seu nome"
-            crossOrigin={undefined}
-            {...register('name')}
-          />
+          <TextInput placeholder="Seu nome" {...register('name')} />
 
           {errors.name && (
             <FormError size="sm">{errors.name.message}</FormError>
           )}
         </label>
 
-        <Button type="submit">
+        <Button type="submit" disabled={isSubmitting}>
           Próximo passo <ArrowRight />
         </Button>
       </Form>

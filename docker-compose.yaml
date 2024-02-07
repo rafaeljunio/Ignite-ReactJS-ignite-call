@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: ignitecall
+    ports:
+      - 3324:3306
