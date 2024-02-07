@@ -30,7 +30,7 @@ interface BlockedDates {
 }
 
 interface CalendarProps {
-  selectedDate?: Date | null
+  selectedDate: Date | null
   onDateSelected: (date: Date) => void
 }
 
@@ -43,12 +43,14 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
 
   function handlePreviousMonth() {
     const previousMonthDate = currentDate.subtract(1, 'month')
+
     setCurrentDate(previousMonthDate)
   }
 
   function handleNextMonth() {
-    const previousMonthDate = currentDate.add(1, 'month')
-    setCurrentDate(previousMonthDate)
+    const nextMonth = currentDate.add(1, 'month')
+
+    setCurrentDate(nextMonth)
   }
 
   const shortWeekDays = getWeekDays({ short: true })
@@ -69,9 +71,6 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
       })
 
       return response.data
-    },
-    {
-      enabled: !!selectedDate,
     },
   )
 
